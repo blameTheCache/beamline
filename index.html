@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!--
+      Static hosting cannot set headers, so the policy is a meta tag. No third-party anything;
+      WebRTC media is not governed by CSP. frame-ancestors cannot be set here; main.ts refuses
+      to run inside a frame instead.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'"
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Beamline</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <script type="module" crossorigin src="./assets/index-BoITZVcC.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-dpmMYgeb.css">
+  </head>
+  <body data-state="preparing">
+    <main id="app">
+      <section id="stage" class="stage" hidden>
+        <video id="video" autoplay playsinline muted></video>
+        <div id="banner" class="banner" role="status" hidden></div>
+        <button id="sound" class="sound" type="button" hidden>Tap for sound</button>
+        <pre id="debug" class="debug" hidden></pre>
+        <div class="toolbar">
+          <span id="pill" class="pill">Live</span>
+          <span class="spacer"></span>
+          <button id="fullscreen" class="tool" type="button">Fullscreen</button>
+          <button id="leave" class="tool danger" type="button">Leave</button>
+        </div>
+      </section>
+
+      <section id="card" class="card">
+        <div class="brand"><span class="dot"></span>Beamline</div>
+
+        <div id="status" role="status">
+          <div class="spinner" aria-hidden="true"></div>
+          <h1 id="status-title">Getting ready…</h1>
+          <p id="status-detail">Preparing a reply for the host.</p>
+        </div>
+
+        <div id="reply-step" hidden>
+          <h1>Send this reply to the host</h1>
+          <p>
+            Tap <strong>Send reply</strong> and pick the chat with the person who sent you the link. Keep this page
+            open.
+          </p>
+          <button id="share-reply" type="button">Send reply</button>
+          <button id="copy-reply" class="secondary" type="button">Copy reply</button>
+          <p id="copy-done" class="hint" role="status" hidden>Copied. Paste it into your chat with the host.</p>
+          <textarea
+            id="reply-code"
+            class="code"
+            readonly
+            rows="4"
+            aria-label="Reply code"
+            spellcheck="false"
+          ></textarea>
+          <p class="hint">The video starts here as soon as the host pastes your reply.</p>
+        </div>
+
+        <div id="ended" hidden>
+          <h1 id="ended-title">Session ended</h1>
+          <p id="ended-message">This session has ended.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
